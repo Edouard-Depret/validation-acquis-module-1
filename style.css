@@ -1,10 +1,28 @@
 html {
-  background-color: rgb(240, 240, 240);
+  background: rgb(15, 37, 55);
+  background: linear-gradient(
+    128deg,
+    rgba(15, 37, 55, 1) 0%,
+    rgba(28, 69, 105, 1) 100%
+  );
   color: rgb(27, 27, 27);
+}
+
+body {
+  background: rgb(15, 37, 55);
+  background: linear-gradient(
+    128deg,
+    rgba(15, 37, 55, 1) 0%,
+    rgba(28, 69, 105, 1) 100%
+  );
 }
 
 header nav div {
   display: flex;
+}
+
+.logo {
+  margin-left: 20px;
 }
 
 header nav .navbar-collapse {
@@ -16,42 +34,40 @@ header nav .navbar-collapse {
   border-color: none !important;
 }
 
-.indexmain {
+.nav-item {
+  margin-right: 20px;
+  font-size: x-large;
+}
+
+.indexmain section:nth-child(1) {
   display: grid;
   grid-auto-rows: 400px;
   grid-gap: 30px;
   grid-template-areas:
     "un un un deux"
     "un un un trois";
+  padding: 0 5%;
 }
 
-.indexmain :nth-child(1) {
+.indexmain section:nth-child(1) div:nth-child(1) {
   grid-area: un;
 }
-.indexmain :nth-child(2) {
+.indexmain section:nth-child(1) div:nth-child(2) {
   grid-area: deux;
 }
-.indexmain :nth-child(3) {
+.indexmain section:nth-child(1) div:nth-child(3) {
   grid-area: trois;
 }
-.gallery {
+
+.images {
   display: flex;
-  flex-wrap: wrap;
-}
-div > img {
-  width: 33%;
-  padding-left: 10%;
-  padding-right: 10%;
-  margin-bottom: 100px;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
 }
 
 .grosseimage {
   width: 100%;
   margin-top: 20px;
-}
-.salesforce_logo {
-  width: 15%;
-  height: 15%;
 }
 
 main .container,
@@ -89,11 +105,25 @@ footer .container-fluid {
   color: rgb(233, 64, 64);
 }
 
+#tableStagiaires tr td:nth-child(4) button {
+  padding: 0em 0.5em;
+  border-radius: 20px;
+  margin: 5px 5px;
+}
 
+#tableStagiaires tr td:nth-child(4) div {
+  text-align: center;
+  width: 100%;
+}
+
+#tableStagiaires td {
+  vertical-align: middle;
+}
 
 footer input[type="email"] {
-  background-image: url("./images/mail.png");
-  background-position: 10px 10px;
+  background-image: url("https://cdn.discordapp.com/attachments/930473035918622791/936280809386704926/megaphone.png");
+  background-position: 7px 7px;
+  background-size: 25px;
   background-repeat: no-repeat;
   padding-left: 40px;
 }
@@ -103,14 +133,18 @@ footer input[type="email"] {
     width: 50%;
   }
 
-  .indexmain {
+  .indexmain section:nth-child(1) {
     display: grid;
-    grid-auto-rows: 400px;
+    grid-auto-rows: 200px;
     grid-gap: 30px;
     grid-template-areas:
       "un un un un"
       "un un un un"
       "deux deux deux deux"
       "trois trois trois trois";
+  }
+
+  .images > img{
+      width: 20%;
   }
 }

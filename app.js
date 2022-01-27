@@ -25,6 +25,11 @@ class Student {
 
 const formFielsArray = ["nom", "prenom", "email", "etude", "bio"];
 
+////////////////////////////
+
+
+
+
 let form2Student = (currentFormElt) => {
   const student = new Student();
 
@@ -36,20 +41,51 @@ let form2Student = (currentFormElt) => {
 };
 
 class FormFieldValidator {
-  constructor() {
-    this.nomMinChar = 2;
-    this.nomMaxChar = 5;
-  }
+ 
+   static nomMinChar = 2;
+   static nomMaxChar = 50;
+
+    static prenomMinChar = 2;
+    static prenomMaxChar = 50;
+
+
 
   static nomValidation(nom) {
     // to do
-    return true;
+    console.log( (nom.length >= this.nomMinChar) )
+    console.log(this.nomMinChar)
+    return (nom.length >= this.nomMinChar) && (nom.length <= this.nomMaxChar );
   }
 
   static prenomValidation(prenom) {
-    //to do
-    return true;
+    
+    return (prenom.length >= this.prenomMinChar) && (prenom.length<= this.prenomMaxChar );
   }
+
+  static emailValidation(email) {
+    const validateAnEmail = (email) => {
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
+    return validateAnEmail(email);
+  }
+
+
+  static etudeValidation(etude) {
+    
+    console.log(etude)
+    return etude != "Choisir votre niveau d'étude";
+  }
+
+  static bioValidation(bio) {
+    
+    return true //bio != "";
+  }
+
+
 
   static validateAll(currentFormElt) {
     const notValidate = [];
@@ -75,7 +111,7 @@ let showIncorrectField = (incorrectFieldName) => {
     prenom: "veuillez saisir un prenom correct",
     email: "email !!!",
     etude: "etude !!!",
-    bio: "bio !!!",
+    bio:   "bio !!!",
   };
 
   incorrectFieldName.forEach((element) => {
@@ -83,6 +119,14 @@ let showIncorrectField = (incorrectFieldName) => {
       incorrectFielMessage[element];
   });
 };
+
+
+let emptyForm = (currentFormElt) =>{
+ formFielsArray.forEach((aField) => {
+    currentFormElt[aField].value = "";
+  });
+
+}
 
 //////// ********* DataBase
 
@@ -128,7 +172,8 @@ class MySGBD {
 
   delete(params) {
     this.data = this.getAll();
-    //delete this.data[params.id];
+    delete this.data[params.id];
+    this._setAll();
 
     return true;
   }
@@ -138,11 +183,14 @@ class MySGBD {
 
 ////////////////////////***** fin database
 
+
+
 function onClickSubmitForm(formElements) {
   const isValideForm = FormFieldValidator.validateAll(formElements);
 
   if (isValideForm.length == 0) {
     const student = form2Student(formElements);
+    emptyForm(formElements);
 
     //save new User
     currentDB.add(student);
@@ -153,7 +201,11 @@ function onClickSubmitForm(formElements) {
 
 //////////// table student
 
-let showCurentStudent = (aStudent) => {};
+let showCurentStudent = (aStudent) => {
+  const info2show = `<p> <h4> ${aStudent.prenom} ${aStudent.nom}</h4> <br> <b>Email :  ${aStudent.email}</b><br> 
+    <b> Etudes faites :</b> ${aStudent.etude}<br> <b>Bio : </b>${aStudent.bio} </p>`;
+  divInfoStagiaire.innerHTML = info2show;
+};
 
 let addRow2tableStudent = (aStudent) => {
   const dataRow = document.createElement("tr");
@@ -168,16 +220,16 @@ let addRow2tableStudent = (aStudent) => {
 
   const boutonVoir = document.createElement("button");
   boutonVoir.innerText = "Voir";
- boutonVoir.classList.add("btn","btn-primary");
-   boutonVoir.setAttribute('type', 'button');
+  boutonVoir.setAttribute("type", "button");
+  boutonVoir.classList.add("btn", "btn-primary");
   boutonVoir.addEventListener("click", function () {
     showCurentStudent(aStudent);
   });
 
   const boutonSupprimer = document.createElement("button");
   boutonSupprimer.innerText = "Supprimer";
-  boutonSupprimer.classList.add("btn","btn-danger");
-  boutonSupprimer.setAttribute('type', 'button');
+  boutonSupprimer.setAttribute("type", "button");
+  boutonSupprimer.classList.add("btn", "btn-danger");
   boutonSupprimer.addEventListener("click", function () {
     dataRow.remove();
     //this.parentElement.parentElement.remove();
@@ -185,12 +237,26 @@ let addRow2tableStudent = (aStudent) => {
   });
 
   const action = document.createElement("td");
-  action.append( boutonVoir, boutonSupprimer);
+  const div = document.createElement("div");
+  div.append(boutonVoir, boutonSupprimer);
+  action.append(div);
 
   value2Show.push(action);
 
   dataRow.append(...value2Show);
   tableStudent.appendChild(dataRow);
+};
+
+let initStudentTable = () => {
+  const storedStudent = currentDB.getAll();
+
+  Object.getOwnPropertyNames(storedStudent).forEach((id) => {
+    addRow2tableStudent(storedStudent[id]);
+
+  });
+
+  console.log(typeof storedStudent);
+  //addRow2tableStudent = (aStudent)
 };
 
 /////////////////////// Initialisation
@@ -215,13 +281,9 @@ try {
   tableStudent = document.querySelector("#tableStagiaires > tbody");
   divInfoStagiaire = document.querySelector("#infoStagiaire");
 
-  const aStudent = {
-    id: "252666",
-    nom: "hello",
-    prenom: "world",
-    email: "@email",
-  };
-  addRow2tableStudent(aStudent);
+  
+
+  initStudentTable();
 
   console.log("on list students");
 }

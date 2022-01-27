@@ -4,65 +4,58 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap.min.css" />
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
-  <body class="d-flex flex-column min-vh-100">
+  <body
+    class="d-flex flex-column min-vh-100"
+    style="background-color: rgb(15, 37, 55)"
+  >
     <header>
-      <nav
-        class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-end"
-      >
-        <a class="navbar-brand" href="#">
-          <img src="./images/salesforce.png" width="100" height="65" alt="" />
-        </a>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="logo">
+          <a class="navbar-brand" href="./index.html">
+            <img
+              class="logo"
+              src="https://koesio.com/wp-content/uploads/2021/07/salesforce.png"
+              style="max-width: 100%"
+              alt=""
+            />
+          </a>
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="./index.html">Accueil</a>
+              <a class="nav-link" href="./index.html"
+                >Accueil <span class="sr-only"></span
+              ></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./liste.html">Nos stagiaires</a>
+              <a class="nav-link" href="./liste.html"
+                >Nos stagiaires <span class="sr-only"></span
+              ></a>
             </li>
           </ul>
         </div>
-
-        <!--Navbar hamburger-->
-        <div class="pos-f-t">
-          <div class="collapse" id="navbarToggleExternalContent">
-            <div class="bg-dark p-4">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="./index.html">Accueil</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./liste.html">Nos stagiaires</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <nav class="navbar navbar-dark bg-dark">
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarToggleExternalContent"
-              aria-controls="navbarToggleExternalContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </nav>
-        </div>
-        <!--Navbar hamburger-->
       </nav>
     </header>
     <main>
-      <section class="container mt-4">
-          <h2>Création d'un stagiaire</h2>
-      <hr/>
+      <section class="container mt-5 mb-5">
+        <h2>Création d'un stagiaire</h2>
+        <hr />
         <form id="studentForm">
           <div class="form-group">
             <label for="nom">Votre nom</label>
@@ -131,17 +124,16 @@
             </button>
           </div>
         </form>
-        
       </section>
     </main>
     <footer class="mt-auto">
       <div class="container-fluid row g-0">
         <div class="col-12 col-md-8 p-2">
-          <h5>Notre adresse</h5>
+          <h4>Notre adresse</h4>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id dolorum,
-            at quis assumenda minima ab mollitia aut sint ipsam voluptatum. Fuga
-            error explicabo nobis provident quam impedit soluta esse quis!
+            123 Rue de la formation <br />
+            44000 Nantes <br />
+            France
           </p>
         </div>
         <div class="col-6 col-md-4 p-2">
@@ -150,13 +142,11 @@
             <input
               type="email"
               class="form-control"
-              placeholder="Votre e-mail"
+              placeholder=". . ."
               required
             />
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button"  >
-                //
-              </button>
+              <button class="btn btn-primary" type="button">></button>
             </div>
           </div>
         </div>

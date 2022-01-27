@@ -4,76 +4,70 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <link rel="stylesheet" href="bootstrap.min.css">
+
+    <link rel="stylesheet" href="bootstrap.min.css" />
     <link rel="stylesheet" href="style.css" />
 
     <title>Document</title>
   </head>
   <body class="d-flex flex-column min-vh-100">
     <header>
-      <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-          <img class="salesforce_logo"
-            src="./images/salesforce.png"
-            alt="..."
-            height="36"
-          />
-        </a>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="logo">
+          <a class="navbar-brand" href="./index.html">
+            <img
+              class="logo"
+              src="https://koesio.com/wp-content/uploads/2021/07/salesforce.png"
+              style="max-width: 100%"
+              alt=""
+            />
+          </a>
+        </div>
         <button
           class="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="./index.html">Accueil</a>
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="./index.html"
+                >Accueil <span class="sr-only"></span
+              ></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./liste.html">Nos stagiaires</a>
-            </li>
-              </ul>
+              <a class="nav-link" href="./liste.html"
+                >Nos stagiaires <span class="sr-only"></span
+              ></a>
             </li>
           </ul>
         </div>
-      </div>
-    </nav>
-    </header>
+      </nav>
     </header>
     <main>
       <section>
         <div class="container mt-4">
           <h2>Liste des stagiaire</h2>
-      <hr/>
+          <hr />
           <table class="table table-striped" id="tableStagiaires">
             <thead>
               <tr>
                 <th scope="col">Nom</th>
                 <th scope="col">Prenom</th>
                 <th scope="col">Email</th>
-                <th scope="col">Action</th>
+                <th scope="col" style="width: 20%; text-align: center">
+                  Action
+                </th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>Mark.otto@gmail.com</td>
-                <td>
-                    <button type="button" class="btn btn-primary">Voir</button>
-                    <button type="button" class="btn btn-danger">Supprimer</button>
-                </td>
-              </tr>
-            </tbody>
+            <tbody></tbody>
           </table>
 
           <a class="btn btn-primary" href="./formulaire.html" role="button">
@@ -82,11 +76,11 @@
         </div>
       </section>
 
-      <div class="container mt-5">
-          <h2>Informations du stagiaire</h2>
-      <hr/>
+      <div class="container mt-5 mb-5">
+        <h2>Informations du stagiaire</h2>
+        <hr />
         <div id="infoStagiaire">
-        <small>Cliquer sur un stagiaire pour voir ces informations</small>
+          <small>Cliquer sur un stagiaire pour voir ces informations</small>
         </div>
       </div>
     </main>
@@ -95,9 +89,9 @@
         <div class="col-12 col-md-8 p-2">
           <h5>Notre adresse</h5>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Id dolorum,
-            at quis assumenda minima ab mollitia aut sint ipsam voluptatum. Fuga
-            error explicabo nobis provident quam impedit soluta esse quis!
+            123 Rue de la formation <br />
+            44000 Nantes <br />
+            France
           </p>
         </div>
         <div class="col-6 col-md-4 p-2">
@@ -111,7 +105,7 @@
             />
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="button">
-                //
+                >
               </button>
             </div>
           </div>
