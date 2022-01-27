@@ -3,24 +3,17 @@ html {
   color: rgb(27, 27, 27);
 }
 
-.navbar {
-  width: 100%;
-  background-color: #555;
-  overflow: auto;
-}
-.navbar a {
-  float: right;
-  padding: 12px;
-  color: white;
-  text-decoration: none;
-  font-size: 17px;
-}
-.navbar a:hover {
-  background-color: #000;
+header nav div {
+  display: flex;
 }
 
-.active {
-  background-color: #04aa6d;
+header nav .navbar-collapse {
+  justify-content: end;
+}
+
+.navbar-dark .navbar-toggler {
+  color: none;
+  border-color: none !important;
 }
 
 .indexmain {
@@ -96,9 +89,28 @@ footer .container-fluid {
   color: rgb(233, 64, 64);
 }
 
+
+
 footer input[type="email"] {
   background-image: url("./images/mail.png");
   background-position: 10px 10px;
   background-repeat: no-repeat;
   padding-left: 40px;
+}
+
+@media screen and (max-width: 820px) {
+  .logo {
+    width: 50%;
+  }
+
+  .indexmain {
+    display: grid;
+    grid-auto-rows: 400px;
+    grid-gap: 30px;
+    grid-template-areas:
+      "un un un un"
+      "un un un un"
+      "deux deux deux deux"
+      "trois trois trois trois";
+  }
 }

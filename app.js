@@ -1,48 +1,39 @@
-
-
-const btnSubmit = document.querySelector("#btnSubmit");
+/*
+const btnSubmit    = document.querySelector("#btnSubmit");
 const formElements = document.querySelector("#studentForm").elements;
-const tableStudent = document.querySelector("#tableStagiaires");
+const tableStudent = document.querySelector("#tableStagiaires > tbody");
+*/
 
+let btnSubmit = undefined; // document.querySelector("#btnSubmit");
+let formElements = undefined; // document.querySelector("#studentForm").elements;
+let tableStudent = undefined; // document.querySelector("#tableStagiaires > tbody");
+
+let divInfoStagiaire = undefined;
+
+console.log("in js");
 
 class Student {
-  constructor( id, nom, prenom, email, etude, bio){
-        this.id = Math.random().toString();
-        this.nom = nom;
-        this.prenom = prenom;
-        this.email = email;
-        this.etude = etude;
-        this.bio = bio;
+  constructor(id, nom, prenom, email, etude, bio) {
+    this.id = Math.random().toString();
+    this.nom = nom;
+    this.prenom = prenom;
+    this.email = email;
+    this.etude = etude;
+    this.bio = bio;
   }
-   
 }
 
+const formFielsArray = ["nom", "prenom", "email", "etude", "bio"];
 
-
-
-const formFielsArray = [
-    "nom",
-    "prenom",
-    "email",
-    "etude",
-    "bio",
-  ];
-
-
-
-  let form2Student = (currentFormElt) => {
-
+let form2Student = (currentFormElt) => {
   const student = new Student();
 
-  formFielsArray.forEach((aField)=>{
-
-  student[aField] = currentFormElt[aField].value;
+  formFielsArray.forEach((aField) => {
+    student[aField] = currentFormElt[aField].value;
   });
 
   return student;
-
-}
-
+};
 
 class FormFieldValidator {
   constructor() {
@@ -51,12 +42,12 @@ class FormFieldValidator {
   }
 
   static nomValidation(nom) {
-      // to do
+    // to do
     return true;
   }
 
   static prenomValidation(prenom) {
-      //to do
+    //to do
     return true;
   }
 
@@ -78,34 +69,25 @@ class FormFieldValidator {
   }
 }
 
+let showIncorrectField = (incorrectFieldName) => {
+  const incorrectFielMessage = {
+    nom: "veuillez saisir un nom correct",
+    prenom: "veuillez saisir un prenom correct",
+    email: "email !!!",
+    etude: "etude !!!",
+    bio: "bio !!!",
+  };
 
-
-let showIncorrectField = (incorrectFieldName)=>{
-
-    const incorrectFielMessage = {
-        nom : "veuillez saisir un nom correct",
-        prenom: "veuillez saisir un prenom correct",
-        email : "email !!!",
-        etude : "etude !!!",
-        bio : "bio !!!",
-    
-    }
-
-    incorrectFieldName.forEach(element => {
-        document.querySelector("#"+element+"Err").innerText = incorrectFielMessage[element]
-    });
-
-}
-
-
-
-
-
+  incorrectFieldName.forEach((element) => {
+    document.querySelector("#" + element + "Err").innerText =
+      incorrectFielMessage[element];
+  });
+};
 
 //////// ********* DataBase
 
-class MySGBD{
-  constructor(dataName = "poeProject"){
+class MySGBD {
+  constructor(dataName = "poeProject") {
     this.dataName = dataName;
     this.monStockage = localStorage;
     this.data = {}; // {student0_ID :student0, student1_ID:student1......, studentn_ID:studentn}
@@ -113,19 +95,28 @@ class MySGBD{
     this._init();
   }
 
-  getAll(){
-     this.data = JSON.parse(this.monStockage[this.dataName]);
-     return this.data;
+  _init() {
+    try {
+      this.getAll();
+    } catch (error) {
+      this._setAll();
+    }
+
+    return true;
   }
 
-  _setAll(){
-      try{
-        this.monStockage[this.dataName] =   JSON.stringify(this.data);
-         return true;
-      }catch{
-          return false;
-      }
-         
+  getAll() {
+    this.data = JSON.parse(this.monStockage[this.dataName]);
+    return this.data;
+  }
+
+  _setAll() {
+    try {
+      this.monStockage[this.dataName] = JSON.stringify(this.data);
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   add(params) {
@@ -135,81 +126,102 @@ class MySGBD{
     return true;
   }
 
-  update(params){
+  delete(params) {
+    this.data = this.getAll();
+    //delete this.data[params.id];
 
+    return true;
   }
 
-  _init(){
-    try {
-        this.getAll();
-    } catch (error) {
-        this._setAll();
-        }
-
-        return true;
-  }
-
-
+  update(params) {}
 }
 
-
-currentDB = new MySGBD();
 ////////////////////////***** fin database
 
+function onClickSubmitForm(formElements) {
+  const isValideForm = FormFieldValidator.validateAll(formElements);
 
-
-
-function onClickSubmitForm(){
-
-const isValideForm = FormFieldValidator.validateAll(formElements);
-
-  if(isValideForm.length == 0 ){
-
+  if (isValideForm.length == 0) {
     const student = form2Student(formElements);
 
     //save new User
     currentDB.add(student);
-    
-    
-  }else{
-        showIncorrectField(isValideForm);
+  } else {
+    showIncorrectField(isValideForm);
   }
-  
-
 }
-
-
-
-
-btnSubmit.addEventListener("click", (event)=>{
-  event.preventDefault();
-
- console.log("in buttin");
-
- onClickSubmitForm();
-  
-
-  
-})
-
-
-
 
 //////////// table student
 
+let showCurentStudent = (aStudent) => {};
 
-tableStudent
+let addRow2tableStudent = (aStudent) => {
+  const dataRow = document.createElement("tr");
 
+  const field2show = ["nom", "prenom", "email"];
 
-let addRow2tableStudent = (aStudent) =>{
+  const value2Show = field2show.map((elt) => {
+    const aColumn = document.createElement("td");
+    aColumn.innerText = aStudent[elt];
+    return aColumn;
+  });
 
+  const boutonVoir = document.createElement("button");
+  boutonVoir.innerText = "Voir";
+ boutonVoir.classList.add("btn","btn-primary");
+   boutonVoir.setAttribute('type', 'button');
+  boutonVoir.addEventListener("click", function () {
+    showCurentStudent(aStudent);
+  });
 
-    const columnEmail = document.createElement("td");
-    columnEmail.innerText = email.value;
+  const boutonSupprimer = document.createElement("button");
+  boutonSupprimer.innerText = "Supprimer";
+  boutonSupprimer.classList.add("btn","btn-danger");
+  boutonSupprimer.setAttribute('type', 'button');
+  boutonSupprimer.addEventListener("click", function () {
+    dataRow.remove();
+    //this.parentElement.parentElement.remove();
+    currentDB.delete(aStudent);
+  });
 
+  const action = document.createElement("td");
+  action.append( boutonVoir, boutonSupprimer);
 
-    const dataRow = document.createElement("tr");
-    dataRow.append(columnNom, columnPrenom, columnEmail, columnAction);
-    listeUtilisateurs.appendChild(dataRow);
+  value2Show.push(action);
 
+  dataRow.append(...value2Show);
+  tableStudent.appendChild(dataRow);
+};
+
+/////////////////////// Initialisation
+
+currentDB = new MySGBD();
+
+//on formulaire
+try {
+  btnSubmit = document.querySelector("#btnSubmit");
+  formElements = document.querySelector("#studentForm").elements;
+
+  btnSubmit.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    onClickSubmitForm(formElements);
+  });
+
+  console.log("on formulaire");
+
+  //on liste students
+} catch {
+  tableStudent = document.querySelector("#tableStagiaires > tbody");
+  divInfoStagiaire = document.querySelector("#infoStagiaire");
+
+  const aStudent = {
+    id: "252666",
+    nom: "hello",
+    prenom: "world",
+    email: "@email",
+  };
+  addRow2tableStudent(aStudent);
+
+  console.log("on list students");
 }
