@@ -82,7 +82,7 @@ class FormFieldValidator {
 
   static bioValidation(bio) {
     
-    return true //bio != "";
+    return true; //bio != "";
   }
 
 
@@ -109,14 +109,14 @@ let showIncorrectField = (incorrectFieldName) => {
   const incorrectFielMessage = {
     nom: "veuillez saisir un nom correct",
     prenom: "veuillez saisir un prenom correct",
-    email: "email !!!",
-    etude: "etude !!!",
+    email: "veuillez saisir un email correct",
+    etude: "veuillez choisir le niveau d'etude",
     bio:   "bio !!!",
   };
 
-  incorrectFieldName.forEach((element) => {
-    document.querySelector("#" + element + "Err").innerText =
-      incorrectFielMessage[element];
+  formFielsArray.forEach((element) => {
+    document.querySelector("#" + element + "Err").innerText = incorrectFieldName.includes(element) ? 
+      incorrectFielMessage[element] : "";
   });
 };
 
@@ -255,8 +255,6 @@ let initStudentTable = () => {
 
   });
 
-  console.log(typeof storedStudent);
-  //addRow2tableStudent = (aStudent)
 };
 
 /////////////////////// Initialisation
