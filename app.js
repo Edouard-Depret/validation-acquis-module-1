@@ -51,10 +51,12 @@ class FormFieldValidator {
   }
 
   static nomValidation(nom) {
-    return true;
+      // to do
+    return false;
   }
 
   static prenomValidation(prenom) {
+      //to do
     return false;
   }
 
@@ -78,11 +80,37 @@ class FormFieldValidator {
 
 
 
+let showIncorrectField = (incorrectFieldName)=>{
+
+    const incorrectFielMessage = {
+        nom : "veuillez saisir un nom correct",
+        prenom: "veuillez saisir un prenom correct",
+        email : "email !!!",
+        etude : "etude !!!",
+        bio : "bio !!!",
+    
+    }
+
+    incorrectFieldName.forEach(element => {
+        document.querySelector("#"+element+"Err").innerText = incorrectFielMessage[element]
+    });
+
+}
+
+
+
+
+
+
+//////// ********* DataBase
+
 class MySGBD{
   constructor(dataName = "poeProject"){
     this.dataName = dataName;
     this.monStockage = localStorage;
     this.data = {}; // {student0_ID :student0, student1_ID:student1......, studentn_ID:studentn}
+
+    this.__init__();
   }
 
   getAll(){
@@ -111,12 +139,40 @@ class MySGBD{
 
   }
 
+  ___init__(){
+
+  }
+
 }
 
 
+currentDB = new MySGBD()
+////////////////////////***** fin database
 
 
 
+
+function onClickSubmitForm(){
+
+const isValideForm = FormFieldValidator.validateAll(formElements);
+
+  if(isValideForm.length == 0 ){
+
+    const student = form2Student(formElements);
+
+    //currentDB
+    
+
+
+    
+
+    
+  }else{
+        showIncorrectField(isValideForm);
+  }
+  
+
+}
 
 
 
@@ -124,13 +180,11 @@ class MySGBD{
 btnSubmit.addEventListener("click", (event)=>{
   event.preventDefault();
 
-  console.log(formElements);
+ console.log("in buttin");
 
-console.log( FormFieldValidator.validateAll(formElements));
+ onClickSubmitForm();
+  
 
-formFielsArray.forEach ((elt) =>{console.log( formElements[elt].value  )});
-
-  //let student = form2Student(formElements);
- // console.log(student);
+  
 })
 

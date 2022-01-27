@@ -1,30 +1,61 @@
 html {
-  background-color: rgb(26, 26, 26);
-  color: rgb(255, 255, 255);
+  background-color: rgb(240, 240, 240);
+  color: rgb(27, 27, 27);
 }
-
 nav {
   border: 1px solid black;
   height: 100px;
   padding: 10%;
 }
-.salesforce_logo {
-  width: 130px;
-  height: 90px;
+
+.indexmain {
+  display: grid;
+  grid-auto-rows: 400px;
+  grid-gap: 30px;
+  grid-template-areas:
+    "un un un deux"
+    "un un un trois";
 }
 
-#navbarSupportedContent {
-  padding-left: 70%;
+.indexmain :nth-child(1) {
+  grid-area: un;
 }
+.indexmain :nth-child(2) {
+  grid-area: deux;
+}
+.indexmain :nth-child(3) {
+  grid-area: trois;
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 5vw);
+  grid-gap: 15px;
+}
+.gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.grosseimage {
+  width: 100%;
+  margin-top: 20px;
+}
+.salesforce_logo {
+  width: 15%;
+  height: 15%;
+}
+
 main .container,
 main .container-fluid {
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(245, 245, 245);
   padding: 20px;
 }
 
 footer .container,
 footer .container-fluid {
-  background-color: rgb(26, 26, 26);
+  background-color: rgb(245, 245, 245);
   padding: 2em;
 }
 
