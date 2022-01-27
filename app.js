@@ -7,7 +7,7 @@ const tableStudent = document.querySelector("#tableStagiaires");
 
 class Student {
   constructor( id, nom, prenom, email, etude, bio){
-        this.id = id;
+        this.id = Math.random().toString();
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -52,12 +52,12 @@ class FormFieldValidator {
 
   static nomValidation(nom) {
       // to do
-    return false;
+    return true;
   }
 
   static prenomValidation(prenom) {
       //to do
-    return false;
+    return true;
   }
 
   static validateAll(currentFormElt) {
@@ -110,7 +110,7 @@ class MySGBD{
     this.monStockage = localStorage;
     this.data = {}; // {student0_ID :student0, student1_ID:student1......, studentn_ID:studentn}
 
-    this.__init__();
+    this._init();
   }
 
   getAll(){
@@ -139,14 +139,21 @@ class MySGBD{
 
   }
 
-  ___init__(){
+  _init(){
+    try {
+        this.getAll();
+    } catch (error) {
+        this._setAll();
+        }
 
+        return true;
   }
+
 
 }
 
 
-currentDB = new MySGBD()
+currentDB = new MySGBD();
 ////////////////////////***** fin database
 
 
@@ -160,12 +167,9 @@ const isValideForm = FormFieldValidator.validateAll(formElements);
 
     const student = form2Student(formElements);
 
-    //currentDB
+    //save new User
+    currentDB.add(student);
     
-
-
-    
-
     
   }else{
         showIncorrectField(isValideForm);
@@ -188,3 +192,24 @@ btnSubmit.addEventListener("click", (event)=>{
   
 })
 
+
+
+
+//////////// table student
+
+
+tableStudent
+
+
+let addRow2tableStudent = (aStudent) =>{
+
+
+    const columnEmail = document.createElement("td");
+    columnEmail.innerText = email.value;
+
+
+    const dataRow = document.createElement("tr");
+    dataRow.append(columnNom, columnPrenom, columnEmail, columnAction);
+    listeUtilisateurs.appendChild(dataRow);
+
+}
