@@ -1,0 +1,35 @@
+html {
+  background-color: rgb(26, 26, 26);
+  color: rgb(255, 255, 255);
+}
+
+nav {
+  border: 1px solid black;
+  height: 100px;
+  padding: 10%;
+}
+.salesforce_logo {
+  width: 130px;
+  height: 90px;
+}
+
+#navbarSupportedContent {
+  padding-left: 70%;
+}
+main .container,
+main .container-fluid {
+  background-color: rgb(32, 32, 32);
+  padding: 20px;
+}
+
+footer .container,
+footer .container-fluid {
+  background-color: rgb(26, 26, 26);
+  padding: 2em;
+}
+
+.err {
+  padding: 0.2em 1em;
+  margin: 0.1em 0;
+  color: rgb(233, 64, 64);
+}
