@@ -53,8 +53,10 @@ header nav div {
   /* -ms-transform: scale(1.05); /* IE 9 */
   /* -webkit-transform: scale(1.05); Safari 3-8 */
   /* transform: scale(1.05);  */
-
-  box-shadow: 0px 0px 10px 2px rgba(11, 219, 222, 0.486);
+  box-shadow: rgba(11, 219, 222, 0.10) 0px 54px 55px,
+    rgba(11, 219, 222, 0.10) 0px -12px 30px, rgba(11, 219, 222, 0.10) 0px 4px 6px,
+    rgba(11, 219, 222, 0.10) 0px 12px 13px, rgba(11, 219, 222, 0.10) 0px -3px 5px;
+ /* box-shadow: 0px 0px 10px 2px rgba(11, 219, 222, 0.486);*/
   /* outline: 1px solid yellow; */
 }
 
@@ -113,9 +115,14 @@ section {
   background-color: rgba(255, 255, 255, 0.068);
   border-color: 1px solid white;
   border-radius: 10px;
+  transition: transform 0.1s;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.images a:hover {
+  transform: scale(1.05);
 }
 
 .images a img {
