@@ -9,16 +9,36 @@ html {
 }
 
 body {
-  background: rgb(15, 37, 55);
-  background: linear-gradient(
-    128deg,
-    rgba(15, 37, 55, 1) 0%,
-    rgba(28, 69, 105, 1) 100%
-  );
+  background: #03224c;
+}
+
+header {
+  background-color: #202020;
 }
 
 header nav div {
   display: flex;
+}
+
+.nav-link:hover {
+  letter-spacing: 2px;
+  transition: all 0.5s ease-out;
+}
+
+.container {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  /* transition: transform 0.1s;  */
+}
+
+.container_index:hover {
+  /* -ms-transform: scale(1.05); /* IE 9 */
+  /* -webkit-transform: scale(1.05); Safari 3-8 */
+  /* transform: scale(1.05);  */
+
+  box-shadow: 1px 4px 20px 4px rgba(11, 217, 222, 0.67);
+  /* outline: 1px solid yellow; */
 }
 
 .logo {
@@ -30,8 +50,8 @@ header nav .navbar-collapse {
 }
 
 .navbar-dark .navbar-toggler {
-  color: none;
-  border-color: none !important;
+  border-color: transparent;
+  margin-right: 10px;
 }
 
 .nav-item {
@@ -60,8 +80,13 @@ header nav .navbar-collapse {
 
 .images {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   margin-bottom: 20px;
+}
+
+.images > img {
+  width: 12%;
+  height: 30%;
 }
 
 .banner {
@@ -88,7 +113,7 @@ main .container-fluid {
 
 footer .container,
 footer .container-fluid {
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: #282828;
   padding: 2em;
 }
 
